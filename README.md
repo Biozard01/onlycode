@@ -2,7 +2,7 @@
 
 Site de rencontre entre dev et personne qui a besoin d’aide ayant besoin d’aide sur du code/algo.
 
-### Les devs :
+## Les devs
 
 ⬛ Les devs ont un profil avec leur compétence, langages de programmation principaux, CV/bio.
 
@@ -16,7 +16,7 @@ Site de rencontre entre dev et personne qui a besoin d’aide ayant besoin d’a
 
 ⬛ Les devs reçoivent un mail quand ils réussissent leur annonces.
 
-### Les personnes qui ont besoin d’aide:
+## Les personnes qui ont besoin d’aide
 
 ⬛ Elles peuvent poster des annonces.
 
@@ -30,7 +30,7 @@ Site de rencontre entre dev et personne qui a besoin d’aide ayant besoin d’a
 
 ⬛ Elles décident après avoir reçu une réponse d’un dev si le dev en question à répondu à son problème, si oui le dev reçois ces points sinon il peut réessayer 1 autre fois. Après ça, si le dev échou encore l’annonce se débloque si elle était encore bloqué.
 
-### Les annonces:
+## Les annonces
 
 ⬛ Les annonces ont une durée déterminée par la personne qui a besoin d’aide.
 
