@@ -1,6 +1,6 @@
 # Onlycode
 
-Site de rencontre entre dev et personne qui a besoin d’aide ayant besoin d’aide sur du code/algo.
+Site de rencontre entre dev et personne qui ont besoin d’aide sur du code/algo.
 
 ## Les devs
 
