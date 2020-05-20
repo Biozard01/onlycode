@@ -1,0 +1,207 @@
+@media screen and (prefers-color-scheme: dark) {
+  body {
+    background-color: black;
+    color: white;
+  }
+}
+
+/* Navbar  */
+
+header {
+  background-color: white;
+  width: 100%;
+  height: 50px;
+}
+
+nav ul {
+  list-style-type: none;
+}
+
+nav li {
+  display: inline-block;
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+}
+
+#home {
+  color: black;
+  text-decoration: none;
+  font-size: 250%;
+  position: absolute;
+  right: auto;
+  top: 15px;
+}
+
+#login {
+  color: black;
+  text-decoration: none;
+  font-size: 130%;
+  position: absolute;
+  right: 140px;
+  top: 30px;
+}
+
+#register {
+  color: black;
+  text-decoration: none;
+  font-size: 130%;
+  position: absolute;
+  right: 30px;
+  top: 30px;
+}
+
+#logout {
+  color: black;
+  text-decoration: none;
+  font-size: 130%;
+  position: absolute;
+  right: 30px;
+  top: 30px;
+}
+
+#profil {
+  color: black;
+  text-decoration: none;
+  font-size: 130%;
+  position: absolute;
+  right: 160px;
+  top: 30px;
+}
+
+#admin {
+  color: black;
+  text-decoration: none;
+  font-size: 130%;
+  position: absolute;
+  right: 220px;
+  top: 30px;
+}
+
+#navoffres {
+  color: black;
+  text-decoration: none;
+  font-size: 130%;
+  position: absolute;
+  right: 900px;
+  top: 30px;
+}
+
+#cvmaker {
+  color: black;
+  text-decoration: none;
+  font-size: 130%;
+  position: absolute;
+  right: 850px;
+  top: 30px;
+}
+
+/* Page connexion  */
+
+#connexion {
+  margin-left: 10%;
+  margin-top: 10%;
+}
+
+#connexion h2 {
+  font-size: 300%;
+}
+
+#connexion label {
+  font-size: 150%;
+}
+
+#connexion a {
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  color: white;
+}
+
+#boutonco {
+  width: 150px;
+  height: 30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+/* Page inscription  */
+
+#insc {
+  margin-left: 10%;
+  margin-top: 10%;
+}
+
+#insc h2 {
+  font-size: 300%;
+}
+
+#insc label {
+  font-size: 150%;
+}
+
+#insc a {
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  color: white;
+}
+
+#boutoninsc {
+  width: 150px;
+  height: 30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+/* page de profil */
+
+#profiles {
+  margin-left: 10%;
+  margin-top: 10%;
+}
+
+#profiles h2 {
+  font-size: 300%;
+}
+
+#buttonmodemail {
+  width: 200px;
+  height: 30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+/* page offre */
+
+#offres {
+  display: inline-block;
+  background-color: white;
+  position: absolute;
+  width: 15%;
+  padding-left: 20px;
+  left: 200px;
+  top: 350px;
+  color: black;
+}
+#offresdispo {
+  margin-left: 10%;
+  margin-top: 10%;
+}
+
+#offresdispo h2 {
+  font-size: 300%;
+}
+
+#boutonoffre {
+  width: 120px;
+  height: 30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+/* page cv */
