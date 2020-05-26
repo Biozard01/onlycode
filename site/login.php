@@ -4,7 +4,7 @@ try {
         session_start();
     }
     if (isset($_SESSION['ROLE'])) {
-        header("Location: http://localhost:8080/tp_php/profiles.php");
+        header('Location: http://localhost:8080/' . 'onlycode/site/405.php');
         exit;
     }
     include './db.php';
@@ -19,10 +19,10 @@ try {
     <body>
         <?php include './nav.php';?>
         <div id="connexion">
-            <div class="card" style="width: 100%;">
-                <div class="card-body">
-                    <h2 class="card-title">Connexion</h2>
-                    <p class="card-text">
+            <div style="width: 100%;">
+                <div>
+                    <h2>Connexion</h2>
+                    <p>
                     <form method="post">
                         <div>
                             <label>Email : </label>
@@ -43,42 +43,45 @@ try {
     }
 
     if (isset($_POST['login'])) {
-        $getemaillogin = htmlspecialchars(strtolower($_POST['email']));
+        $get_email_login = htmlspecialchars(strtolower($_POST['email']));
 
         $req = $pdo->prepare("SELECT * FROM users WHERE email = ?");
-        $req->execute(array($getemaillogin));
+        $req->execute(array($get_email_login));
         $resultat = $req->fetch();
 
-        $isPasswordCorrect = password_verify($_POST['password'], $resultat['passsword']);
-        echo $resultat['rrole'];
+        $is_password_correct = password_verify($_POST['password'], $resultat['mdp']);
+
         if (!$resultat) {
             $_SESSION['ERROR'] = true;
-            header("Location: http://localhost:8080/tp_php/login.php");
+            header('Location: http://localhost:8080/' . 'onlycode/site/login.php');
+
         } else {
-            if ($isPasswordCorrect) {
-                $_SESSION['ROLE'] = $resultat['rrole'];
+            if ($is_password_correct) {
+                $_SESSION['ROLE'] = $resultat['user_role'];
                 $_SESSION['ID'] = $resultat['id'];
                 $_SESSION['NOM'] = $resultat['nom'];
                 $_SESSION['PRENOM'] = $resultat['prenom'];
                 $_SESSION['EMAIL'] = $resultat['email'];
+                $_SESSION['USERNAME'] = $resultat['username'];
+                $_SESSION['POINTS'] = $resultat['points'];
+                $_SESSION['LEAD'] = $resultat['leaderboard'];
+
                 if ($_SESSION['ROLE'] != 2) {
-                    header("Location: http://localhost:8080/tp_php/profiles.php");
+                    header('Location: http://localhost:8080/' . 'onlycode/site/profil.php');
                 } else {
-                    header("Location: http://localhost:8080/tp_php/admin.php");
+                    header('Location: http://localhost:8080/' . 'onlycode/site/admin.php');
                 }
             } else {
                 $_SESSION['ERROR'] = true;
-                header("Location: http://localhost:8080/tp_php/login.php");
+                header('Location: http://localhost:8080/' . 'onlycode/site/login.php');
             }
         }
     }
 
 } catch (Exception $e) {
     die('Erreur : ' . $e->getMessage());
-
 }
 ?>
-                        <br>
                         <div>
                             <input id="boutonco" type="submit" name="login" value="Se connecter">
                         </div>

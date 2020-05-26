@@ -4,8 +4,9 @@ try {
         session_start();
     }
     include './db.php';
-    if ($_SESSION['ROLE'] != 2) {
-        header("Location: http://localhost:8080/tp_php/index.php");
+
+    if (!isset($_SESSION['ROLE']) or $_SESSION['ROLE'] != 2) {
+        header('Location: http://localhost:8080/' . 'onlycode/site/405.php');
         exit;
     }
 } catch (Exception $e) {
