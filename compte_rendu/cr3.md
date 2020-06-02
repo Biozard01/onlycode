@@ -1,9 +1,9 @@
 # Compte rendu 2
 
-Avancement du projet : Création du site, bdd bientôt terminer
+Avancement du projet : Ajout de nv barr sur le site en html avec boostrap
 
-Problèmes rencontrés : Bdd sur les annonces avec le temps d'expiration à indiquer
+Problèmes rencontrés : integration de boostrap
 
-Objectifs et taches du jour : Commencer le site et css en fonction des maquette crée par killian
+Objectifs et taches du jour : commencez les autres pages en html
 
-Objectifs pour la prochaine fois : Continuer le site, faire un http{s} auto sign sur nginx
+Objectifs pour la prochaine fois : finir les pages en html et css puis intégré la bdd
