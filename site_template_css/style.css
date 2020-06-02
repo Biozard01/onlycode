@@ -1,0 +1,82 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: aqua;
+}
+.navbarre {
+  height: 60px;
+  background-color: rgb(30, 255, 0);
+}
+.page {
+  display: flex;
+  flex-direction: row;
+  background: red;
+}
+
+.gauche {
+  display: flex;
+
+  background-color: green;
+  flex-direction: column;
+}
+
+.droite {
+  display: flex;
+  background-color: gold;
+  width: 100%;
+  flex-direction: column;
+}
+
+.content {
+  background-color: #333;
+  width: 100%;
+  margin-left: auto;
+  border: 2px solid black;
+}
+
+.article {
+  margin: 15px;
+  padding: 15px;
+  background-color: #bbb;
+}
+
+.upper-div {
+  display: flex;
+}
+
+.titre {
+  width: 25%;
+}
+
+.upper-div span {
+  width: 75%;
+}
+
+.box {
+  margin: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.recherche {
+  display: flex;
+  flex-direction: row-reverse;
+  background-color: grey;
+  padding: 10px;
+}
+.recherche p {
+  margin-right: 8px;
+}
+.recherche input {
+  margin-top: auto;
+  margin-bottom: auto;
+  height: 50%;
+}
+.title {
+  display: flex;
+  background-color: blue;
+}
+
+.title h3 {
+  padding: 80px;
+}
