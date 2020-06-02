@@ -89,14 +89,14 @@ try {
 
     if ($result <= array(1)) {
 
-        $nom = strtolower("Djaballah");
-        $prenom = strtolower("Nedaa");
-        $email = "admin@admin.com";
-        $username = "Barracupid";
-        $mdp = password_hash("root", PASSWORD_DEFAULT);
-        $user_role = 2;
-        $points = 0;
-        $show_leaderboard = 0;
+        $nom = "";
+        $prenom = "";
+        $email = "";
+        $username = "";
+        $mdp = "";
+        $user_role = "";
+        $points = "";
+        $show_leaderboard = "";
         $create_admin = "INSERT INTO onlycode.users (
             nom,
             prenom,
