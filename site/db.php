@@ -47,6 +47,7 @@ try {
         is_ann_locked tinyint(1) NULL,
         ann_username  VARCHAR(255) NOT NULL,
         ann_success  tinyint(1) NULL,
+        ann_text VARCHAR(1000) NOT NULL,
         ann_views int NOT NULL,
         PRIMARY KEY (ann_id));";
 

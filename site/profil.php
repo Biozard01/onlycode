@@ -60,11 +60,9 @@ try {
     <?php include './head.php';?>
     <body>
     <?php include './nav.php';?>
-    <div id="profiles">
-            <div style="width: 100%;">
-                <div>
-                    <h2>Votre Profil</h2>
-                    <?php
+        <div style="width: 100%;">
+            <h2>Votre Profil</h2>
+                <?php
 if (isset($_SESSION['ERROR'])) {
     echo '<p>' . '* Adresse incorrect (déjà utiliser ou vide)' . '</p>';
     unset($_SESSION['ERROR']);
@@ -97,8 +95,6 @@ try {
 } catch (Exception $e) {
     die('Erreur : ' . $e->getMessage());
 }?>
-                </div>
-            </div>
         </div>
     </body>
 </html>

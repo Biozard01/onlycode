@@ -21,29 +21,26 @@ try {
     <?php include './head.php';?>
     <body>
         <?php include './nav.php';?>
-        <div id="insc">
             <div style="width: 100%;">
-                <div>
-                    <h2>S'Inscrire</h2>
-                    <p>
-                    <form method="post">
-                        <div>
-                            <label>Nom : </label>
-                            <input type="text" name="nom" placeholder="Nom" pattern="[^()/><\][\\\x22,;|éèç]+" required>
-                        </div>
-                        <div>
-                            <label>Prénom : </label>
-                            <input type="text" name="prenom" pattern="[^()/><\][\\\x22,;|éèç]+" placeholder="Prenom" required>
-                        </div>
-                        <div>
-                            <label>Pseudo : </label>
-                            <input type="text" name="username" pattern="[^()/><\][\\\x22,;|éèç]+" placeholder="Pseudo" required>
-                        </div>
-                        <div>
-                            <label>Email : </label>
-                            <input type="email" name="email" pattern="[^()/><\][\\\x22,;|éèç]+" placeholder="Email" required>
-                        </div>
-                        <?php
+                <h2>S'Inscrire</h2>
+                <form method="post">
+                    <div>
+                        <label>Nom : </label>
+                        <input type="text" name="nom" placeholder="Nom" pattern="[^()/><\][\\\x22,;|éèç]+" required>
+                    </div>
+                    <div>
+                        <label>Prénom : </label>
+                        <input type="text" name="prenom" pattern="[^()/><\][\\\x22,;|éèç]+" placeholder="Prenom" required>
+                    </div>
+                    <div>
+                        <label>Pseudo : </label>
+                        <input type="text" name="username" pattern="[^()/><\][\\\x22,;|éèç]+" placeholder="Pseudo" required>
+                    </div>
+                    <div>
+                        <label>Email : </label>
+                        <input type="email" name="email" pattern="[^()/><\][\\\x22,;|éèç]+" placeholder="Email" required>
+                    </div>
+                    <?php
 try {
     include './db.php';
 
@@ -153,24 +150,21 @@ try {
 
 }
 ?>
-                        <div>
-                            <label>Mot de passe : </label>
-                            <input type="password" name="password" placeholder="Mot de passe" required>
-                        </div>
-                        <br>
-                        <div>
-                            <input type="checkbox" name="dev">
-                            <label for="dev">Vous êtes un dev</label>
-                        </div>
-                        <br>
-                        <div>
-                            <input id="boutoninsc" type="submit" name="register" value="S'enregistrer">
-                        </div>
-                    </form>
-                    <h3><a href="./login.php">Vous avez déjà un compte ? <br> Connectez-vous.</a></h3>
-                    </p>
+                <div>
+                    <label>Mot de passe : </label>
+                    <input type="password" name="password" placeholder="Mot de passe" required>
                 </div>
-            </div>
+                <br>
+                <div>
+                    <input type="checkbox" name="dev">
+                    <label for="dev">Vous êtes un dev</label>
+                </div>
+                <br>
+                <div>
+                    <input type="submit" name="register" value="S'enregistrer">
+                </div>
+            </form>
+            <h3><a href="./login.php">Vous avez déjà un compte ? <br> Connectez-vous.</a></h3>
         </div>
     </body>
 </html>

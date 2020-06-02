@@ -4,7 +4,7 @@ try {
         session_start();
     }
     include './db.php';
-    
+
 } catch (Exception $e) {
     die('Erreur : ' . $e->getMessage());
 }

@@ -18,22 +18,20 @@ try {
     <?php include './head.php';?>
     <body>
         <?php include './nav.php';?>
-        <div id="connexion">
             <div style="width: 100%;">
-                <div>
-                    <h2>Connexion</h2>
-                    <p>
-                    <form method="post">
-                        <div>
-                            <label>Email : </label>
-                            <input type="email" name="email" placeholder="Email" required>
-                        </div>
-                        <br>
-                        <div>
-                            <label>Mot de passe : </label>
-                            <input type="password" name="password" placeholder="Mot de passe" required>
-                        </div>
-                        <?php
+                <h2>Connexion</h2>
+                <form method="post">
+                    <div>
+                        <label>Email : </label>
+                        <input type="email" name="email" placeholder="Email" required>
+                    </div>
+                    <br>
+                    <div>
+                        <label>Mot de passe : </label>
+                        <input type="password" name="password" placeholder="Mot de passe" required>
+                    </div>
+                    <br>
+                    <?php
 try {
     include './db.php';
 
@@ -57,6 +55,7 @@ try {
 
         } else {
             if ($is_password_correct) {
+
                 $_SESSION['ROLE'] = $resultat['user_role'];
                 $_SESSION['ID'] = $resultat['id'];
                 $_SESSION['NOM'] = $resultat['nom'];
@@ -82,14 +81,11 @@ try {
     die('Erreur : ' . $e->getMessage());
 }
 ?>
-                        <div>
-                            <input id="boutonco" type="submit" name="login" value="Se connecter">
-                        </div>
-                    </form>
-                    <h3><a href="./register.php">Pas de compte ? <br> Inscrivez-vous.</a></h3>
-                    </p>
+                <div>
+                    <input type="submit" name="login" value="Se connecter">
                 </div>
-            </div>
+            </form>
+            <h3><a href="./register.php">Pas de compte ? <br> Inscrivez-vous.</a></h3>
         </div>
     </body>
 </html>
