@@ -26,8 +26,9 @@ try {
                 <div>
                     <h2>Créer une annonce</h2>
                     <form method="post">
+                    <script type="text/javascript" src="./script.js"></script>
                         <p>Titre de l'annonce : <input name="ann_name" type="text" required><p>
-                        <p>Date d'expiration de l'annonce : <input name="ann_expire_time" type="datetime-local" max="9999-12-31T00:00" min="2020-06-02T00:00" required></p>
+                        <p>Date d'expiration de l'annonce : <input name="ann_expire_time" type="datetime-local"  min='1888-31-12' max='2020-31-12' required></p>
                         <p>Description de l'annonce : <p>
                         <textarea name="ann_text" cols="30" maxlength="1000" required></textarea>
                         <div>
