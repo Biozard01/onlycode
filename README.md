@@ -18,7 +18,7 @@ Site de rencontre entre dev et personne qui ont besoin d’aide sur du code/algo
 
 ## Les personnes qui ont besoin d’aide
 
-⬛ Elles peuvent poster des annonces.
+✅ Elles peuvent poster des annonces.
 
 ⬛ Elles peuvent choisir l’affichage des posts (les plus récent d’abord, les plus vues, les plus proche d'expiration, par langage)
 
@@ -32,7 +32,7 @@ Site de rencontre entre dev et personne qui ont besoin d’aide sur du code/algo
 
 ## Les annonces
 
-⬛ Les annonces ont une durée déterminée par la personne qui a besoin d’aide.
+✅ Les annonces ont une durée déterminée par la personne qui a besoin d’aide.
 
 ⬛ Après que la durée est écoulée, l’annonce disparaît mais reste stocké dans la base de donnée pendant 24 H (en cas de problème on peut s’en servir pour faire un backup du site, on peut aussi les utiliser en cas de litige).
 

@@ -51,7 +51,7 @@ try {
 
     if (isset($_SESSION['ERROR1'])) {
         echo '<p>' . '* Pseudo déjà utiliser' . '</p>';
-        unset($_SESSION['ERROR']);
+        unset($_SESSION['ERROR1']);
     }
 
     if (isset($_POST['register'])) {
