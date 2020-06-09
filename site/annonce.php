@@ -26,7 +26,7 @@ try {
                 <div>
                     <h2>Créer une annonce</h2>
                     <form method="post">
-                        <p>Titre de l'annonce : <input name="ann_name" type="text" required spellcheck><p>
+                        <p>Titre de l'annonce : <input name="ann_name" type="text" required pattern="[^()/><\][\\\x22,;|éèç]+" spellcheck><p>
                         <p>Date d'expiration de l'annonce : <input name="ann_expire_time" type="datetime-local" required></p>
                         <p>Description de l'annonce : <p>
                         <textarea name="ann_text" cols="30" maxlength="1000" required spellcheck></textarea>

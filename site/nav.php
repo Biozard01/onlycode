@@ -13,6 +13,12 @@ try {
 <header>
     <div>
         <h1><a href="index.php" title="Lien vers l'accueil">Onlycode</a></h1>
+        <div>
+            <form action="db.php" method="GET">
+                <input type="text" name="search" placeholder="Rechercher...">
+                <input type="submit" name="validsearch" value="🔍">
+            </form>
+        </div>
         <nav>
             <ul>
 
@@ -24,9 +30,7 @@ try {
 
         if ($_SESSION['ROLE'] == 2) {
             echo '<li>' . '<a href="./admin.php" title="Lien vers votre la page admin">' . "Page d'Admin" . '</a>' . '</li>';
-        }
-
-        if ($_SESSION['ROLE'] == 0) {
+        } elseif ($_SESSION['ROLE'] == 0) {
             echo '<li>' . '<a href="./annonce.php" title="Page de création d annonce">' . "Créer une annonce" . '</a>' . '</li>';
         }
 
