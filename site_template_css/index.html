@@ -1,79 +1,106 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
+    <!--implementation de Boostrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <meta charset="utf-8" />
     <title>OnlyCode</title>
     <link rel="stylesheet" href="style.css" />
   </head>
 
-  <body>
-    <div class="navbarre"></div>
-    <div class="page">
-      <div class="gauche"></div>
-      <div class="droite">
-        <div class="title">
-          <p>bonjour je m'appel thierry</p>
-        </div>
 
-        <div class="recherche">
-          <input />
-          <p>Recherche</p>
-        </div>
-        <div class="content">
-          <div class="article">
-            <div class="upper-div">
-              <div class="titre">
-                <h3>Titre</h3>
-                <span> Date </span>
-              </div>
-              <span>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-                quis feugiat urna. Cras dignissim libero ac ex egestas, eget
-                vehicula neque convallis. Proin tincidunt molestie risus, id
-                semper massa facilisis non. Aliquam eleifend convallis
-                vulputate. Aliquam erat volutpat. Sed tempus ex mattis placerat
-                blandit. Pellentesque habitant morbi tristique senectus et netus
-                et malesuada fames ac turpis egestas. Proin tincidunt nulla
-                neque, id rhoncus nulla venenatis in. Suspendisse in pharetra
-                erat. Proin cursus velit sit amet volutpat blandit. Praesent
-                fermentum metus ante, non tincidunt ante hendrerit et. Aenean
-                rhoncus magna purus, eget tempus est interdum in. Suspendisse
-                potenti.
-              </span>
-            </div>
-            <div class="box">
-              <input />
-              <input />
-            </div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Dropdown
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
           </div>
-          <div class="article">
-            <div class="upper-div">
-              <div class="titre">
-                <h3>Titre</h3>
-                <span>Date</span>
-              </div>
-              <span>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-                quis feugiat urna. Cras dignissim libero ac ex egestas, eget
-                vehicula neque convallis. Proin tincidunt molestie risus, id
-                semper massa facilisis non. Aliquam eleifend convallis
-                vulputate. Aliquam erat volutpat. Sed tempus ex mattis placerat
-                blandit. Pellentesque habitant morbi tristique senectus et netus
-                et malesuada fames ac turpis egestas. Proin tincidunt nulla
-                neque, id rhoncus nulla venenatis in. Suspendisse in pharetra
-                erat. Proin cursus velit sit amet volutpat blandit. Praesent
-                fermentum metus ante, non tincidunt ante hendrerit et. Aenean
-                rhoncus magna purus, eget tempus est interdum in. Suspendisse
-                potenti.
-              </span>
-            </div>
-            <div class="box">
-              <input />
-              <input />
-            </div>
-          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+
+
+  <div class="content">
+    <div class="article">
+      <div class="upper-div">
+        <div class="titre">
+          <h3>Titre</h3>
+          <span> Date </span>
         </div>
+        <span>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
+          quis feugiat urna. Cras dignissim libero ac ex egestas, eget
+          vehicula neque convallis. Proin tincidunt molestie risus, id
+          semper massa facilisis non. Aliquam eleifend convallis
+          vulputate. Aliquam erat volutpat. Sed tempus ex mattis placerat
+          blandit. Pellentesque habitant morbi tristique senectus et netus
+          et malesuada fames ac turpis egestas. Proin tincidunt nulla
+          neque, id rhoncus nulla venenatis in. Suspendisse in pharetra
+          erat. Proin cursus velit sit amet volutpat blandit. Praesent
+          fermentum metus ante, non tincidunt ante hendrerit et. Aenean
+          rhoncus magna purus, eget tempus est interdum in. Suspendisse
+          potenti.
+        </span>
+      </div>
+      <div class="box">
+        <input />
+        <input />
       </div>
     </div>
-  </body>
+    <div class="article">
+      <div class="upper-div">
+        <div class="titre">
+          <h3>Titre</h3>
+          <span>Date</span>
+        </div>
+        <span>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
+          quis feugiat urna. Cras dignissim libero ac ex egestas, eget
+          vehicula neque convallis. Proin tincidunt molestie risus, id
+          semper massa facilisis non. Aliquam eleifend convallis
+          vulputate. Aliquam erat volutpat. Sed tempus ex mattis placerat
+          blandit. Pellentesque habitant morbi tristique senectus et netus
+          et malesuada fames ac turpis egestas. Proin tincidunt nulla
+          neque, id rhoncus nulla venenatis in. Suspendisse in pharetra
+          erat. Proin cursus velit sit amet volutpat blandit. Praesent
+          fermentum metus ante, non tincidunt ante hendrerit et. Aenean
+          rhoncus magna purus, eget tempus est interdum in. Suspendisse
+          potenti.
+        </span>
+      </div>
+      <div class="box">
+        <input />
+        <input />
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</body>
 </html>
