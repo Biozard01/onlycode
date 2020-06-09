@@ -137,6 +137,8 @@ try {
                 $ann_username_clean = str_replace($order, $replace, $str);
 
                 $cle++;
+                
+                $_SESSION['ANN_ID'] = $result['ann_id'];
 
                 echo '<hr>';
                 echo '<p>' . "Nom de l'annonce : " . $ann_name_clean . ' | ' . "Nombre de vues : " . $ann_views_clean . ' | '
