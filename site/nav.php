@@ -12,9 +12,9 @@ try {
 
 <header>
     <div>
-        <h1><a href="index.php" title="Lien vers l'accueil">Onlycode</a></h1>
+        <h1><a href="./index.php" title="Lien vers l'accueil">Onlycode</a></h1>
         <div>
-            <form action="db.php" method="GET">
+            <form>
                 <input type="text" name="search" placeholder="Rechercher...">
                 <input type="submit" name="validsearch" value="🔍">
             </form>

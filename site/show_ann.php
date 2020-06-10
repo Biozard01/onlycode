@@ -1,8 +1,9 @@
 <?php
-if (!isset($_SESSION['ROLE'])) {
-    header('Location: http://localhost:8080/' . 'onlycode/site/405.php');
-    exit;
+if (!isset($_SESSION)) {
+    session_start();
 }
+
+include './db.php';
 
 try {
     if (isset($_SESSION['ROLE'])) {
@@ -27,11 +28,9 @@ try {
             foreach ($result as $cle => $valeur) {
 
                 $dispo_or_not_cut = json_encode(array_slice($result0, $cle, $valeur));
-
                 $str = $dispo_or_not_cut;
                 $order = array("[", "{", "is_ann_locked", ":", "}", "]", '"', ',');
                 $replace = '';
-
                 $dispo_or_not_clean = str_replace($order, $replace, $str);
 
                 if ($dispo_or_not_clean == 0) {
@@ -46,9 +45,9 @@ try {
                     $str = $ann_views_cut;
                     $order = array("[", "{", "ann_views", ":", "}", "]", '"', ',');
                     $replace = '';
+                    $ann_views_clean = str_replace($order, $replace, $str);
 
                     $cle++;
-                    $ann_views_clean = str_replace($order, $replace, $str);
 
                     echo '<hr>';
                     echo '<p>' . "Nom de l'annonce : " . $ann_name_clean . ' | ' . "Nombre de vues : " . $ann_views_clean . '</p>';
@@ -137,8 +136,12 @@ try {
                 $ann_username_clean = str_replace($order, $replace, $str);
 
                 $cle++;
-                
-                $_SESSION['ANN_ID'] = $result['ann_id'];
+
+                $id = $pdo->prepare("SELECT ann_id FROM annonces");
+                $id->execute();
+                $result_id = $id->fetchAll();
+
+                $_SESSION['ANN_ID'] = $result_id;
 
                 echo '<hr>';
                 echo '<p>' . "Nom de l'annonce : " . $ann_name_clean . ' | ' . "Nombre de vues : " . $ann_views_clean . ' | '

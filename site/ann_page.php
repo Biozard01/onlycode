@@ -19,20 +19,23 @@ try {
 
 <div>
     <div style="width: 100%;">
-        <h2>Toutes vos annonces</h2>
-<?php
+    <?php
 
-$annonce = $pdo->prepare("SELECT ann_name FROM annonces WHERE ann_id ?");
-$annonce->execute(array($_SESSION['ANN_ID']));
+$annonce = $pdo->prepare("SELECT ann_name FROM annonces");
+$annonce->execute();
 $result = $annonce->fetchAll();
 
-$views = $pdo->prepare("SELECT ann_views FROM annonces WHERE ann_id ?");
-$views->execute(array($_SESSION['ANN_ID']));
+$views = $pdo->prepare("SELECT ann_views FROM annonces");
+$views->execute();
 $result1 = $views->fetchAll();
 
-$username = $pdo->prepare("SELECT ann_username FROM annonces WHERE ann_id ?");
+$username = $pdo->prepare("SELECT ann_username FROM annonces");
 $username->execute();
-$result2 = $username->fetchAll(array($_SESSION['ANN_ID']));
+$result2 = $username->fetchAll();
+
+$desc = $pdo->prepare("SELECT ann_text FROM annonces");
+$desc->execute();
+$result3 = $desc->fetchAll();
 
 foreach ($result as $cle => $valeur) {
     $ann_name_cut = json_encode(array_slice($result, $cle, $valeur));
@@ -53,18 +56,27 @@ foreach ($result as $cle => $valeur) {
     $replace = '';
     $ann_username_clean = str_replace($order, $replace, $str);
 
+    $ann_text_cut = json_encode(array_slice($result3, $cle, $valeur));
+    $str = $ann_text_cut;
+    $order = array("[", "{", "ann_text", ":", "}", "]", '"', ',');
+    $replace = '';
+    $ann_text_clean = str_replace($order, $replace, $str);
+
     $cle++;
 
-    $_SESSION['ANN_ID'] = $result['ann_id'];
+    $id = $pdo->prepare("SELECT ann_id FROM annonces");
+    $id->execute();
+    $result_id = $id->fetchAll();
+
+    $_SESSION['ANN_ID'] = $result_id;
 
     echo '<hr>';
     echo '<p>' . "Nom de l'annonce : " . $ann_name_clean . ' | ' . "Nombre de vues : " . $ann_views_clean . ' | '
-        . "Nom d'utilisateur de l'annonceur : " . $ann_username_clean . '</p>' .
-        "<a href='./ann_page.php' title='Voir l`annonce complète'>" . "<button href='./ann_page.php' title='Voir l`annonce complète'>" .
-        "Show" . '</button>' . '</a>';
+        . "Nom d'utilisateur de l'annonceur : " . $ann_username_clean . '</p>';
+    echo '<p>' . $ann_text_clean . '</p>';
 }
 
 ?>
-        </div>
     </div>
+</div>
 
