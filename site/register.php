@@ -68,14 +68,14 @@ try {
 
         foreach ($result as $cle => $valeur) {
             $email_cut = json_encode(array_slice($result, $cle, $valeur));
-            $cle++;
             $str = $email_cut;
             $order = array("[", "{", "email", ":", "}", "]", '"', ',', '    ');
             $replace = '';
-
             $email_clean = str_replace($order, $replace, $str);
 
-            if ($email_clean === $get_email) {
+            $cle++;
+
+            if ($email_clean == $get_email) {
                 $_SESSION['ERROR'] = true;
                 header('Location: http://localhost:8080/' . 'onlycode/site/register.php');
                 exit;
@@ -88,14 +88,14 @@ try {
 
         foreach ($result as $cle => $valeur) {
             $username_clean = json_encode(array_slice($result, $cle, $valeur));
-            $cle++;
             $str = $username_clean;
             $order = array("[", "{", "username", ":", "}", "]", '"', ',', '    ');
             $replace = '';
-
             $username_clean = str_replace($order, $replace, $str);
 
-            if ($username_clean === $get_username) {
+            $cle++;
+
+            if ($username_clean == $get_username) {
                 $_SESSION['ERROR1'] = true;
                 header('Location: http://localhost:8080/' . 'onlycode/site/register.php');
                 exit;
@@ -136,12 +136,11 @@ try {
             username,
             mdp,
             user_role,
-            points,
             register_date,
             show_leaderboard)
-            VALUES(?, ?, ?, ?, ?, ?, ?, NOW(), ?)";
+            VALUES(?, ?, ?, ?, ?, ?, NOW(), ?)";
         $query1 = $pdo->prepare($requete1);
-        $query1->execute(array($get_nom, $get_prenom, $get_email, $get_username, $pass_hache, $is_dev, $init_points, $is_show_leaderboard));
+        $query1->execute(array($get_nom, $get_prenom, $get_email, $get_username, $pass_hache, $is_dev, $is_show_leaderboard));
 
         header('Location: http://localhost:8080/' . 'onlycode/site/profil.php');
     }

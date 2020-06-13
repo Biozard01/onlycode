@@ -254,7 +254,9 @@ if ($_SESSION['LEAD'] == 0) {?>
 
     }
     }
+    ?>
 
+<?php
 } catch (Exception $e) {
     die('Erreur : ' . $e->getMessage());
 }?>

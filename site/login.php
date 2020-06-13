@@ -62,7 +62,12 @@ try {
                 $_SESSION['PRENOM'] = $resultat['prenom'];
                 $_SESSION['EMAIL'] = $resultat['email'];
                 $_SESSION['USERNAME'] = $resultat['username'];
-                $_SESSION['POINTS'] = $resultat['points'];
+
+                $req1 = $pdo->prepare("SELECT lead_point FROM leaderboard WHERE lead_username = ?");
+                $req1->execute($_SESSION['USERNAME']);
+                $resultat1 = $req1->fetch();
+
+                $_SESSION['POINTS'] = $resultat1['lead_point'];
                 $_SESSION['LEAD'] = $resultat['show_leaderboard'];
 
                 if ($_SESSION['ROLE'] != 2) {
