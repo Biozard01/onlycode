@@ -15,6 +15,6 @@ try {
 <?php include './head.php';?>
     <body>
         <?php include './nav.php';?>
-        <h2>Tu fais quoi ici le bouff ?</h2>
+        <h2>Interdiction d'être ici !</h2>
     </body>
 </html>

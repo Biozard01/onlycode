@@ -7,41 +7,42 @@ include './db.php';
 
 try {
     if (isset($_SESSION['ROLE'])) {
+        /* Partie affichage pour les gens qui ont besoin d'aide */
         if ($_SESSION['ROLE'] == 0) {?>
         <div>
             <div style="width: 100%;">
                 <h2>Vos annonces encore disponible</h2>
 <?php
 
-            $annonce = $pdo->prepare("SELECT ann_name FROM annonces WHERE ann_username LIKE ?");
-            $annonce->execute(array($_SESSION['USERNAME']));
-            $result = $annonce->fetchAll();
+            $is_locked = $pdo->prepare("SELECT is_ann_locked FROM annonces WHERE ann_username LIKE ?");
+            $is_locked->execute(array($_SESSION['USERNAME']));
+            $result0 = $is_locked->fetchAll();
 
-            $dispo_or_not = $pdo->prepare("SELECT is_ann_locked FROM annonces WHERE ann_username LIKE ?");
-            $dispo_or_not->execute(array($_SESSION['USERNAME']));
-            $result0 = $dispo_or_not->fetchAll();
+            $ann_name = $pdo->prepare("SELECT ann_name FROM annonces WHERE ann_username LIKE ?");
+            $ann_name->execute(array($_SESSION['USERNAME']));
+            $result1 = $ann_name->fetchAll();
 
             $views = $pdo->prepare("SELECT ann_views FROM annonces WHERE ann_username LIKE ?");
             $views->execute(array($_SESSION['USERNAME']));
-            $result1 = $views->fetchAll();
+            $result2 = $views->fetchAll();
 
-            foreach ($result as $cle => $valeur) {
+            foreach ($result0 as $cle => $valeur) {
 
-                $dispo_or_not_cut = json_encode(array_slice($result0, $cle, $valeur));
-                $str = $dispo_or_not_cut;
+                $is_locked_cut = json_encode(array_slice($result0, $cle, $valeur));
+                $str = $is_locked_cut;
                 $order = array("[", "{", "is_ann_locked", ":", "}", "]", '"', ',');
                 $replace = '';
-                $dispo_or_not_clean = str_replace($order, $replace, $str);
+                $is_locked_clean = str_replace($order, $replace, $str);
 
-                if ($dispo_or_not_clean == 0) {
+                if ($is_locked_clean == 0) {
 
-                    $ann_name_cut = json_encode(array_slice($result, $cle, $valeur));
+                    $ann_name_cut = json_encode(array_slice($result1, $cle, $valeur));
                     $str = $ann_name_cut;
                     $order = array("[", "{", "ann_name", ":", "}", "]", '"', ',');
                     $replace = '';
                     $ann_name_clean = str_replace($order, $replace, $str);
 
-                    $ann_views_cut = json_encode(array_slice($result1, $cle, $valeur));
+                    $ann_views_cut = json_encode(array_slice($result2, $cle, $valeur));
                     $str = $ann_views_cut;
                     $order = array("[", "{", "ann_views", ":", "}", "]", '"', ',');
                     $replace = '';
@@ -96,58 +97,75 @@ try {
         </div>
     </div>
 
+<!-- Partie affichage pour les dev -->
+
 <?php
 } elseif ($_SESSION['ROLE'] == 1) {?>
 
 <div>
         <div style="width: 100%;">
-            <h2>Toutes vos annonces</h2>
+            <h2>Toutes les annonces disponible</h2>
             <?php
 
-            $annonce = $pdo->prepare("SELECT ann_name FROM annonces");
-            $annonce->execute();
-            $result = $annonce->fetchAll();
+            $is_locked = $pdo->prepare("SELECT is_ann_locked FROM annonces");
+            $is_locked->execute();
+            $result0 = $is_locked->fetchAll();
+
+            $ann_name = $pdo->prepare("SELECT ann_name FROM annonces");
+            $ann_name->execute();
+            $result1 = $ann_name->fetchAll();
 
             $views = $pdo->prepare("SELECT ann_views FROM annonces");
             $views->execute();
-            $result1 = $views->fetchAll();
+            $result2 = $views->fetchAll();
 
             $username = $pdo->prepare("SELECT ann_username FROM annonces");
             $username->execute();
-            $result2 = $username->fetchAll();
+            $result3 = $username->fetchAll();
 
-            foreach ($result as $cle => $valeur) {
-                $ann_name_cut = json_encode(array_slice($result, $cle, $valeur));
-                $str = $ann_name_cut;
-                $order = array("[", "{", "ann_name", ":", "}", "]", '"', ',');
+            foreach ($result0 as $cle => $valeur) {
+
+                $is_locked_cut = json_encode(array_slice($result0, $cle, $valeur));
+                $str = $is_locked_cut;
+                $order = array("[", "{", "is_ann_locked", ":", "}", "]", '"', ',');
                 $replace = '';
-                $ann_name_clean = str_replace($order, $replace, $str);
+                $is_locked_clean = str_replace($order, $replace, $str);
 
-                $ann_views_cut = json_encode(array_slice($result1, $cle, $valeur));
-                $str = $ann_views_cut;
-                $order = array("[", "{", "ann_views", ":", "}", "]", '"', ',');
-                $replace = '';
-                $ann_views_clean = str_replace($order, $replace, $str);
+                if ($is_locked_clean == 0) {
 
-                $ann_username_cut = json_encode(array_slice($result2, $cle, $valeur));
-                $str = $ann_username_cut;
-                $order = array("[", "{", "ann_username", ":", "}", "]", '"', ',');
-                $replace = '';
-                $ann_username_clean = str_replace($order, $replace, $str);
+                    $ann_name_cut = json_encode(array_slice($result1, $cle, $valeur));
+                    $str = $ann_name_cut;
+                    $order = array("[", "{", "ann_name", ":", "}", "]", '"', ',');
+                    $replace = '';
+                    $ann_name_clean = str_replace($order, $replace, $str);
 
-                $cle++;
+                    $ann_views_cut = json_encode(array_slice($result2, $cle, $valeur));
+                    $str = $ann_views_cut;
+                    $order = array("[", "{", "ann_views", ":", "}", "]", '"', ',');
+                    $replace = '';
+                    $ann_views_clean = str_replace($order, $replace, $str);
 
-                $id = $pdo->prepare("SELECT ann_id FROM annonces");
-                $id->execute();
-                $result_id = $id->fetchAll();
+                    $ann_username_cut = json_encode(array_slice($result3, $cle, $valeur));
+                    $str = $ann_username_cut;
+                    $order = array("[", "{", "ann_username", ":", "}", "]", '"', ',');
+                    $replace = '';
+                    $ann_username_clean = str_replace($order, $replace, $str);
 
-                $_SESSION['ANN_ID'] = $result_id;
+                    $ann_text_cut = json_encode(array_slice($result3, $cle, $valeur));
+                    $str = $ann_text_cut;
+                    $order = array("[", "{", "ann_text", ":", "}", "]", '"', ',');
+                    $replace = '';
+                    $ann_text_clean = str_replace($order, $replace, $str);
 
-                echo '<hr>';
-                echo '<p>' . "Nom de l'annonce : " . $ann_name_clean . ' | ' . "Nombre de vues : " . $ann_views_clean . ' | '
-                    . "Nom d'utilisateur de l'annonceur : " . $ann_username_clean . '</p>' .
-                    "<a href='./ann_page.php' title='Voir l`annonce complète'>" . "<button href='./ann_page.php' title='Voir l`annonce complète'>" .
-                    "Show" . '</button>' . '</a>';
+                    $cle++;
+
+                    echo '<hr>';
+                    echo '<hr>';
+                    echo '<p>' . "Nom de l'annonce : " . $ann_name_clean . ' | ' . "Nombre de vues : " . $ann_views_clean . ' | '
+                        . "Nom d'utilisateur de l'annonceur : " . $ann_username_clean . '</p>';
+                    echo '<p>' . $ann_text_clean . '</p>';
+
+                }
             }
 
             ?>

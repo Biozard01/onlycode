@@ -25,12 +25,11 @@ try {
 
             foreach ($result as $cle => $valeur) {
                 $email_cut = json_encode(array_slice($result, $cle, $valeur));
-                $cle++;
                 $str = $email_cut;
                 $order = array("[", "{", "email", ":", "}", "]", '"', ',', '    ');
                 $replace = '';
-
                 $email_clean = str_replace($order, $replace, $str);
+                $cle++;
 
                 if ($email_clean === $new_email or $new_email === '') {
                     $_SESSION['ERROR'] = true;
@@ -63,6 +62,7 @@ try {
         <div style="width: 100%;">
             <h2>Votre Profil</h2>
                 <?php
+
 if (isset($_SESSION['ERROR'])) {
     echo '<p>' . '* Adresse incorrect (déjà utiliser ou vide)' . '</p>';
     unset($_SESSION['ERROR']);
@@ -85,12 +85,66 @@ try {
         <?php
 
     } else {?>
+
         <form method="post">
             <p>Pseudo actuel :  <?php echo $_SESSION['USERNAME'] ?></p>
             <p>Adresse email actuel :  <?php echo $_SESSION['EMAIL'] ?></p>
             <button type="submit" name="modify_email">Modifier votre email</button>
-        <?php
+
+<?php
+if ($_SESSION['ROLE'] == 1) {?>
+    <p>Votre Bio : <?php
+
+        $test_bio = $pdo->prepare('SELECT dev_bio FROM dev WHERE dev_username = ?');
+        $test_bio->execute(array($_SESSION['USERNAME']));
+        $result = $test_bio->fetchAll();
+
+        foreach ($result as $cle => $valeur) {
+            $bio_cut = json_encode(array_slice($result, $cle, $valeur));
+            $str = $bio_cut;
+            $order = array("[", "{", "dev_bio", ":", "}", "]", '"', ',', '    ');
+            $replace = '';
+            $bio_clean = str_replace($order, $replace, $str);
+
+            $cle++;
+
+            if ($bio_clean == "null") {
+                echo "Pas de bio";
+            } else {
+                echo $bio_clean;
+            }
+        }?>
+    </p>
+
+    <input type="submit" name="add_bio" value="Modifier votre bio">
+    <br>
+    <br>
+
+<?php
+if (isset($_POST['valid_bio'])) {
+            $new_bio = htmlspecialchars($_POST['bio']);
+
+            $requete = "UPDATE dev SET dev_bio = ? WHERE dev_username =?";
+            $query = $pdo->prepare($requete);
+            $query->execute(array($new_bio, $_SESSION["USERNAME"]));
+            header('Location: http://localhost:8080/' . 'onlycode/site/profil.php');
+        }?>
+
+<?php
+if (isset($_POST['add_bio'])) {?>
+    <form method="post">
+        <textarea name="bio" cols="30" maxlength="1000" spellcheck></textarea>
+        <br>
+        <br>
+        <input type="submit" name="valid_bio" value="Valider">
+    </form>
+
+<?php
+}?>
+
+<?php
 }
+    }
 
 } catch (Exception $e) {
     die('Erreur : ' . $e->getMessage());
