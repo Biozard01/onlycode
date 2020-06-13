@@ -63,7 +63,7 @@ try {
                 $_SESSION['EMAIL'] = $resultat['email'];
                 $_SESSION['USERNAME'] = $resultat['username'];
                 $_SESSION['POINTS'] = $resultat['points'];
-                $_SESSION['LEAD'] = $resultat['leaderboard'];
+                $_SESSION['LEAD'] = $resultat['show_leaderboard'];
 
                 if ($_SESSION['ROLE'] != 2) {
                     header('Location: http://localhost:8080/' . 'onlycode/site/profil.php');

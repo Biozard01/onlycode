@@ -13,6 +13,10 @@ try {
 <header>
     <div>
         <h1><a href="./index.php" title="Lien vers l'accueil">Onlycode</a></h1>
+
+<?php
+try {
+    if (isset($_SESSION['ROLE'])) {?>
         <div>
             <form>
                 <input type="text" name="search" placeholder="Rechercher...">
@@ -21,10 +25,9 @@ try {
         </div>
         <nav>
             <ul>
+        <?php
 
-<?php
-try {
-    if (isset($_SESSION['ROLE'])) {
+        echo '<li>' . '<a href="./leaderboard.php" title="Lien vers le classement">' . 'Classement' . '</a>' . '</li>';
         echo '<li>' . '<a href="./profil.php" title="Lien vers votre profil">' . 'Profil' . '</a>' . '</li>';
         echo '<li>' . '<a href="./logout.php" title="Lien de déconnexion">' . 'Déconnexion' . '</a>' . '</li>';
 

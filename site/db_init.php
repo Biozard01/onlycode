@@ -30,7 +30,6 @@ try {
         username VARCHAR(255) NOT NULL,
         mdp VARCHAR(255) NOT NULL,
         user_role tinyint(2) NOT NULL,
-        points int NOT NULL,
         register_date datetime NOT NULL,
         show_leaderboard tinyint(1) NOT NULL,
         PRIMARY KEY (id));";
@@ -49,6 +48,7 @@ try {
         ann_success  tinyint(1) NULL,
         ann_text VARCHAR(1000) NOT NULL,
         ann_views int NOT NULL,
+        ann_dev_username  VARCHAR(255) NULL,
         PRIMARY KEY (ann_id));";
 
     $query2 = $pdo->prepare($table_annonces);
