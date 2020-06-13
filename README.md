@@ -4,13 +4,13 @@ Site de rencontre entre dev et personne qui ont besoin d’aide sur du code/algo
 
 ## Les devs
 
-⬛ Les devs ont un profil avec leur compétence, langages de programmation principaux, CV/bio.
+✅ Les devs ont un profil avec leur compétence, langages de programmation principaux, CV/bio.
 
 ⬛ Les devs peuvent choisir l’affichage des posts (les plus récent d’abord, les plus vues, les plus proche d'expiration, par langage)
 
 ⬛ Recherche avancé pour trouver des posts (langage de prog, les plus récent d’abord, les plus vues, les plus proche d'expiration)
 
-⬛ Les devs peuvent choisir d'apparaître dans un classement en fonction de leur points, ce qui permet de déterminer les devs les plus actifs et qui ont le plus de succès.
+✅ Les devs peuvent choisir d'apparaître dans un classement en fonction de leur points, ce qui permet de déterminer les devs les plus actifs et qui ont le plus de succès.
 
 ⬛ Les devs ne peuvent pas directement communiqué avec les personnes qui ont besoin d’aide, elles doivent d'abord initier la conversation.
 
@@ -34,7 +34,7 @@ Site de rencontre entre dev et personne qui ont besoin d’aide sur du code/algo
 
 ✅ Les annonces ont une durée déterminée par la personne qui a besoin d’aide.
 
-⬛ Après que la durée est écoulée, l’annonce disparaît mais reste stocké dans la base de donnée pendant 24 H (en cas de problème on peut s’en servir pour faire un backup du site, on peut aussi les utiliser en cas de litige).
+⬛ près que la durée est écoulée, l’annonce disparaît mais reste stocké dans la base de donnée pendant 24 H (en cas de problème on peut s’en servir pour faire un backup du site, on peut aussi les utiliser en cas de litige).
 
 ⬛ Lorsque l’annonce est accepté par un dev, elle est verrouillé pendant 24h.
 
