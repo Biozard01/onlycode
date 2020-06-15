@@ -1,7 +1,67 @@
 @media screen and (prefers-color-scheme: dark) {
   body {
-    background-color: gray;
+    background-color: #bbb;
     color: black;
     font-family: "Segoe UI";
+  }
+
+  .navbarre {
+    height: 60px;
+  }
+
+  .page {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .gauche {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .droite {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .content {
+    background-color: #333;
+    width: 100%;
+    margin-left: auto;
+    border: 2px solid black;
+  }
+
+  .article {
+    margin: 15px;
+    padding: 15px;
+    background-color: #bbb;
+  }
+
+  .upper-div {
+    display: flex;
+  }
+
+  .titre {
+    width: 25%;
+  }
+
+  .upper-div span {
+    width: 75%;
+  }
+
+  .box {
+    margin: 15px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .title {
+    display: flex;
+    background-color: blue;
+  }
+
+  .title h3 {
+    padding: 80px;
   }
 }

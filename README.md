@@ -36,7 +36,7 @@ Site de rencontre entre dev et personne qui ont besoin d’aide sur du code/algo
 
 ⬛ Après que la durée est écoulée, l’annonce disparaît mais reste stocké dans la base de donnée pendant 24 H (en cas de problème on peut s’en servir pour faire un backup du site, on peut aussi les utiliser en cas de litige).
 
-⬛ Lorsque l’annonce est accepté par un dev, elle est verrouillé pendant 24h.
+✅ Lorsque l’annonce est accepté par un dev, elle est verrouillé pendant 24h.
 
 ⬛ Une fois les 24h passé tous les autres devs peuvent accepter cette annonce et tenté d’être validé par la personne qui a besoin d’aide.
 

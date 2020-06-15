@@ -1,16 +1,17 @@
 <?php
-if (!isset($_SESSION)) {
-    session_start();
-}
-
-include './db.php';
-
 try {
+
+    if (!isset($_SESSION)) {
+        session_start();
+    }
+
+    include './db.php';
+
     if (isset($_SESSION['ROLE'])) {
         /* Partie affichage pour les gens qui ont besoin d'aide */
         if ($_SESSION['ROLE'] == 0) {?>
-        <div>
-            <div style="width: 100%;">
+     <div class="content">
+    <div class="article" style="width: 100%;">
                 <h2>Vos annonces encore disponible</h2>
 <?php
 
@@ -61,8 +62,8 @@ try {
         </div>
     </div>
 
-    <div>
-        <div style="width: 100%;">
+    <div class="content">
+    <div class="article" style="width: 100%;">
             <h2>Toutes vos annonces</h2>
             <?php
 
@@ -102,8 +103,8 @@ try {
 <?php
 } elseif ($_SESSION['ROLE'] == 1) {?>
 
-<div>
-    <div style="width: 100%;">
+<div class="content">
+    <div class="article" style="width: 100%;">
         <h2>Toutes les annonces disponible</h2>
 
 <?php
@@ -134,7 +135,7 @@ try {
 
             $ann_id1 = $pdo->prepare("SELECT ann_id FROM annonces");
             $ann_id1->execute();
-            $result6 = $ann_id1->fetchAll();
+            $result8 = $ann_id1->fetchAll();
 
             foreach ($result0 as $cle => $valeur) {
 
@@ -176,11 +177,11 @@ try {
                     $replace5 = '';
                     $ann_lock_time_clean1 = str_replace($order5, $replace5, $str5);
 
-                    $ann_id_cut1 = json_encode(array_slice($result6, $cle, $valeur));
-                    $str6 = $ann_id_cut1;
-                    $order6 = array("[", "{", "ann_id", ":", "}", "]", '"', ',');
-                    $replace6 = '';
-                    $ann_id_clean1 = str_replace($order6, $replace6, $str6);
+                    $ann_id_cut1 = json_encode(array_slice($result8, $cle, $valeur));
+                    $str8 = $ann_id_cut1;
+                    $order8 = array("[", "{", "ann_id", ":", "}", "]", '"', ',');
+                    $replace8 = '';
+                    $ann_id_clean1 = str_replace($order8, $replace8, $str8);
 
                     $cle++;
 
@@ -203,33 +204,37 @@ try {
 
                 }
 
-                if (isset($_POST['acc_ann'])) {
-
-                    if (isset($_POST['ann_chose'])) {
-                        foreach ($result6 as $cle => $valeur) {
-                            $requete0 = "UPDATE annonces SET is_ann_locked = ? WHERE ann_id = ?";
-                            $query0 = $pdo->prepare($requete0);
-                            $query0->execute(array(1, $ann_id_clean1));
-
-                            $requete1 = "UPDATE annonces SET ann_dev_username = ? WHERE ann_id = ?";
-                            $query1 = $pdo->prepare($requete1);
-                            $query1->execute(array($_SESSION['USERNAME'], $ann_id_clean1));
-
-                            header('Location: http://localhost:8080/' . 'onlycode/site/index.php');
-                        }
-                    }
-
-                }
-
             }
 
+            if (isset($_POST['acc_ann'])) {
+
+                if (isset($_POST['ann_chose'])) {
+                    foreach ($result8 as $cle => $valeur) {
+                        $requete0 = "UPDATE annonces SET is_ann_locked = ? WHERE ann_id = ?";
+                        $query0 = $pdo->prepare($requete0);
+                        $query0->execute(array(1, $ann_id_clean1));
+
+                        $requete1 = "UPDATE annonces SET ann_dev_username = ? WHERE ann_id = ?";
+                        $query1 = $pdo->prepare($requete1);
+                        $query1->execute(array($_SESSION['USERNAME'], $ann_id_clean1));
+
+                        $requete1 = "UPDATE annonces SET ann_lock_time = (NOW() + INTERVAL 1 DAY) WHERE ann_id = ?";
+                        $query1 = $pdo->prepare($requete1);
+                        $query1->execute(array($ann_id_clean1));
+
+                        $cle++;
+                        header('Location: http://localhost:8080/' . 'onlycode/site/index.php');
+                    }
+                }
+                header('Location: http://localhost:8080/' . 'onlycode/site/index.php');
+            }
             ?>
         </div>
     </div>
 
 <!-- Partie affichage pour les dev num 2 -->
-<div>
-    <div style="width: 100%;">
+<div class="content">
+    <div class="article" style="width: 100%;">
         <h2>Vos annonces en cour</h2>
 
         <?php
@@ -274,25 +279,25 @@ try {
                 $str1 = $ann_name_cut;
                 $order1 = array("[", "{", "ann_name", ":", "}", "]", '"', ',');
                 $replace1 = '';
-                $ann_name_clean = str_replace($order1, $replace1, $str1);
+                $ann_name_clean0 = str_replace($order1, $replace1, $str1);
 
                 $ann_views_cut = json_encode(array_slice($result2, $cle, $valeur));
                 $str2 = $ann_views_cut;
                 $order2 = array("[", "{", "ann_views", ":", "}", "]", '"', ',');
                 $replace2 = '';
-                $ann_views_clean = str_replace($order2, $replace2, $str2);
+                $ann_views_clean0 = str_replace($order2, $replace2, $str2);
 
                 $ann_username_cut = json_encode(array_slice($result3, $cle, $valeur));
                 $str3 = $ann_username_cut;
                 $order3 = array("[", "{", "ann_username", ":", "}", "]", '"', ',');
                 $replace3 = '';
-                $ann_username_clean = str_replace($order3, $replace3, $str3);
+                $ann_username_clean0 = str_replace($order3, $replace3, $str3);
 
                 $ann_text_cut = json_encode(array_slice($result4, $cle, $valeur));
                 $str4 = $ann_text_cut;
                 $order4 = array("[", "{", "ann_text", ":", "}", "]", '"', ',');
                 $replace4 = '';
-                $ann_text_clean = str_replace($order4, $replace4, $str4);
+                $ann_text_clean0 = str_replace($order4, $replace4, $str4);
 
                 $ann_lock_time_cut1 = json_encode(array_slice($result5, $cle, $valeur));
                 $str5 = $ann_lock_time_cut1;
@@ -304,16 +309,16 @@ try {
                 $str6 = $ann_dev_username_cut;
                 $order6 = array("[", "{", "ann_dev_username", ":", "}", "]", '"', ',');
                 $replace6 = '';
-                $ann_dev_username_clean = str_replace($order6, $replace6, $str6);
+                $ann_dev_username_clean0 = str_replace($order6, $replace6, $str6);
 
                 $cle++;
 
-                if ($_SESSION['USERNAME'] == $ann_dev_username_clean) {
+                if ($_SESSION['USERNAME'] == $ann_dev_username_clean0) {
 
                     echo '<hr>';
-                    echo '<p>' . "Nom de l'annonce : " . $ann_name_clean . ' | ' . 'Nombre de vues : ' . $ann_views_clean . ' | ' .
-                        "Nom d'utilisateur de l'annonceur : " . $ann_username_clean . '</p>';
-                    echo '<p>' . 'Description : ' . $ann_text_clean . '</p>';
+                    echo '<p>' . "Nom de l'annonce : " . $ann_name_clean0 . ' | ' . 'Nombre de vues : ' . $ann_views_clean0 . ' | ' .
+                        "Nom d'utilisateur de l'annonceur : " . $ann_username_clean0 . '</p>';
+                    echo '<p>' . 'Description : ' . $ann_text_clean0 . '</p>';
 
                 }
 
