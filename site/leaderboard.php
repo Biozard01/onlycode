@@ -3,6 +3,12 @@ try {
     if (!isset($_SESSION)) {
         session_start();
     }
+
+    if (!isset($_SESSION['ROLE'])) {
+        header('Location: http://localhost:8080/' . 'onlycode/site/405.php');
+        exit;
+    }
+
     include './db.php';
 
 } catch (Exception $e) {
@@ -19,11 +25,11 @@ try {
 
 include './nav.php';
 
-$test_lead_username = $pdo->prepare('SELECT lead_username FROM leaderboard');
+$test_lead_username = $pdo->prepare('SELECT lead_username FROM leaderboard ORDER BY lead_point DESC');
 $test_lead_username->execute();
 $result0 = $test_lead_username->fetchAll();
 
-$test_lead_point = $pdo->prepare('SELECT lead_point FROM leaderboard');
+$test_lead_point = $pdo->prepare('SELECT lead_point FROM leaderboard  ORDER BY lead_point DESC');
 $test_lead_point->execute();
 $result1 = $test_lead_point->fetchAll();
 

@@ -87,6 +87,17 @@ try {
     $CreateAdmin->execute();
     $result = $CreateAdmin->fetchAll();
 
+    $table_mp = "CREATE TABLE IF NOT EXISTS onlycode.mp (
+        mp_id INT NOT NULL AUTO_INCREMENT,
+        mp_title VARCHAR(255) NOT NULL,
+        mp_username_sender VARCHAR(255) NOT NULL,
+        mp_message VARCHAR(1000) NOT NULL,
+        mp_username_receiver VARCHAR(255) NOT NULL,
+        PRIMARY KEY (mp_id));";
+
+    $query6 = $pdo->prepare($table_mp);
+    $query6->execute();
+
     if ($result <= array(1)) {
 
         $nom = "";

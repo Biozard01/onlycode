@@ -28,6 +28,7 @@ try {
         <?php
 
         echo '<li>' . '<a href="./leaderboard.php" title="Lien vers le classement">' . 'Classement' . '</a>' . '</li>';
+        echo '<li>' . '<a href="./message.php" title="Lien vers la messagerie">' . 'Messagerie' . '</a>' . '</li>';
         echo '<li>' . '<a href="./profil.php" title="Lien vers votre profil">' . 'Profil' . '</a>' . '</li>';
         echo '<li>' . '<a href="./logout.php" title="Lien de déconnexion">' . 'Déconnexion' . '</a>' . '</li>';
 

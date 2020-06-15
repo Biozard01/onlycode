@@ -12,7 +12,7 @@ Site de rencontre entre dev et personne qui ont besoin d’aide sur du code/algo
 
 ✅ Les devs peuvent choisir d'apparaître dans un classement en fonction de leur points, ce qui permet de déterminer les devs les plus actifs et qui ont le plus de succès.
 
-⬛ Les devs ne peuvent pas directement communiqué avec les personnes qui ont besoin d’aide, elles doivent d'abord initier la conversation.
+✅ Les devs ne peuvent pas directement communiqué avec les personnes qui ont besoin d’aide, elles doivent d'abord initier la conversation.
 
 ⬛ Les devs reçoivent un mail quand ils réussissent leur annonces.
 
@@ -24,7 +24,7 @@ Site de rencontre entre dev et personne qui ont besoin d’aide sur du code/algo
 
 ⬛ Recherche avancé pour trouver des devs en particulier (langage de prog, les plus actif, par points)
 
-⬛ Elles peuvent proposer des annonces directement à un dev en particulier (messagerie)
+✅ Elles peuvent proposer des annonces directement à un dev en particulier (messagerie)
 
 ⬛ Elles reçoivent un mail quand leurs annonces sont choisis par un dev (le mail contient le pseudo du dev et un lien vers le profil du dev)
 
@@ -34,7 +34,7 @@ Site de rencontre entre dev et personne qui ont besoin d’aide sur du code/algo
 
 ✅ Les annonces ont une durée déterminée par la personne qui a besoin d’aide.
 
-⬛ près que la durée est écoulée, l’annonce disparaît mais reste stocké dans la base de donnée pendant 24 H (en cas de problème on peut s’en servir pour faire un backup du site, on peut aussi les utiliser en cas de litige).
+⬛ Après que la durée est écoulée, l’annonce disparaît mais reste stocké dans la base de donnée pendant 24 H (en cas de problème on peut s’en servir pour faire un backup du site, on peut aussi les utiliser en cas de litige).
 
 ⬛ Lorsque l’annonce est accepté par un dev, elle est verrouillé pendant 24h.
 

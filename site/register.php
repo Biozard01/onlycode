@@ -87,8 +87,8 @@ try {
         $result = $test_username->fetchAll();
 
         foreach ($result as $cle => $valeur) {
-            $username_clean = json_encode(array_slice($result, $cle, $valeur));
-            $str = $username_clean;
+            $username_cut = json_encode(array_slice($result, $cle, $valeur));
+            $str = $username_cut;
             $order = array("[", "{", "username", ":", "}", "]", '"', ',', '    ');
             $replace = '';
             $username_clean = str_replace($order, $replace, $str);
@@ -114,6 +114,10 @@ try {
             VALUES(?, ?)";
             $send_lead = $pdo->prepare($add_lead);
             $send_lead->execute(array($get_username, $init_points));
+
+            $requete1 = "INSERT INTO mp(mp_title, mp_username_sender, mp_message, mp_username_receiver) VALUES(?, ?, ?, ?)";
+            $query1 = $pdo->prepare($requete1);
+            $query1->execute(array("test", "Barracupid", "test", $get_username));
 
         } else {
             $is_dev = 0;
