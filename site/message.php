@@ -1,4 +1,15 @@
 <?php
+function no_special_char_str($string)
+{
+    $string = str_replace(array('[\', \']'), '', $string);
+    $string = preg_replace('/\[.*\]/U', '', $string);
+    $string = preg_replace('/&(amp;)?#?[a-z0-9]+;/i', '-', $string);
+    $string = htmlentities($string, ENT_COMPAT, 'utf-8');
+    $string = preg_replace('/&([a-z])(acute|uml|circ|grave|ring|cedil|slash|tilde|caron|lig|quot|rsquo);/i', '\\1', $string);
+    $string = preg_replace(array('/[^a-z0-9]/i', '/[-]+/'), ' ', $string);
+    return trim($string, ' ');
+}
+
 try {
     if (!isset($_SESSION)) {
         session_start();
@@ -133,7 +144,7 @@ try {
     if (isset($_POST['register'])) {
         $get_mp_title = htmlspecialchars($_POST['mp_title']);
         $get_mp_username_receiver = htmlspecialchars($_POST['mp_username_receiver']);
-        $get_mp_message = htmlspecialchars($_POST['mp_message']);
+        $get_mp_message = htmlspecialchars(no_special_char_str($_POST['mp_message']));
         $get_mp_username_sender = $_SESSION['USERNAME'];
 
         if ($_SESSION['ROLE'] == 1) {

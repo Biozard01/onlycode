@@ -18,16 +18,16 @@ try {
 <?php
 try {
     if (isset($_SESSION['ROLE'])) {
-        echo '<li class="nav-item">' . '<a class="nav-link" href="./leaderboard.php" title="Lien vers le classement">' . 'Classement' . '</a>' . '</li>';
-        echo '<li class="nav-item">' . '<a class="nav-link" href="./message.php" title="Lien vers la messagerie">' . 'Messagerie' . '</a>' . '</li>';
-        echo '<li class="nav-item">' . '<a class="nav-link" href="./profil.php" title="Lien vers votre profil">' . 'Profil' . '</a>' . '</li>';
-        echo '<li class="nav-item">' . '<a class="nav-link" href="./logout.php" title="Lien de déconnexion">' . 'Déconnexion' . '</a>' . '</li>';
 
         if ($_SESSION['ROLE'] == 2) {
             echo '<li class="nav-item">' . '<a class="nav-link" href="./admin.php" title="Lien vers votre la page admin">' . "Page d'Admin" . '</a>' . '</li>';
         } elseif ($_SESSION['ROLE'] == 0) {
             echo '<li class="nav-item">' . '<a class="nav-link" href="./annonce.php" title="Page de création d annonce">' . "Créer une annonce" . '</a>' . '</li>';
         }
+        echo '<li class="nav-item">' . '<a class="nav-link" href="./leaderboard.php" title="Lien vers le classement">' . 'Classement' . '</a>' . '</li>';
+        echo '<li class="nav-item">' . '<a class="nav-link" href="./message.php" title="Lien vers la messagerie">' . 'Messagerie' . '</a>' . '</li>';
+        echo '<li class="nav-item">' . '<a class="nav-link" href="./profil.php" title="Lien vers votre profil">' . 'Profil' . '</a>' . '</li>';
+        echo '<li class="nav-item">' . '<a class="nav-link" href="./logout.php" title="Lien de déconnexion">' . 'Déconnexion' . '</a>' . '</li>';
 
     } else {
         echo '<li class="nav-item">' . '<a class="nav-link" href="./login.php" title="Lien de connexion">' . 'Connexion' . '</a>' . '</li>';

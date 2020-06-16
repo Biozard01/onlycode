@@ -54,7 +54,6 @@ try {
                     echo '<hr>';
                     echo '<p>' . "Nom de l'annonce : " . $ann_name_clean . ' | ' . "Nombre de vues : " . $ann_views_clean . '</p>';
 
-                } else {
                 }
             }
 
@@ -75,6 +74,10 @@ try {
             $views->execute(array($_SESSION['USERNAME']));
             $result1 = $views->fetchAll();
 
+            $ann_id1 = $pdo->prepare("SELECT ann_id FROM annonces");
+            $ann_id1->execute();
+            $result9 = $ann_id1->fetchAll();
+
             foreach ($result as $cle => $valeur) {
                 $ann_name_cut = json_encode(array_slice($result, $cle, $valeur));
                 $str = $ann_name_cut;
@@ -86,9 +89,9 @@ try {
                 $str = $ann_views_cut;
                 $order = array("[", "{", "ann_views", ":", "}", "]", '"', ',');
                 $replace = '';
+                $ann_views_clean = str_replace($order, $replace, $str);
 
                 $cle++;
-                $ann_views_clean = str_replace($order, $replace, $str);
 
                 echo '<hr>';
                 echo '<p>' . "Nom de l'annonce : " . $ann_name_clean . ' | ' . "Nombre de vues : " . $ann_views_clean . '</p>';
@@ -183,6 +186,15 @@ try {
                     $replace8 = '';
                     $ann_id_clean1 = str_replace($order8, $replace8, $str8);
 
+                    if (!isset($_SESSION['ANN_VIEWS'])) {
+                        $_SESSION['ANN_VIEWS'] = $ann_views_clean;
+                    } else {
+                        $_SESSION['ANN_VIEWS']++;
+                        $requete0 = "UPDATE annonces SET ann_views = ? WHERE ann_id = ?";
+                        $query0 = $pdo->prepare($requete0);
+                        $query0->execute(array($_SESSION['ANN_VIEWS'], $ann_id_clean1));
+                    }
+
                     $cle++;
 
                     echo '<hr>';
@@ -202,32 +214,29 @@ try {
 
             <?php
 
-                }
+                    if (isset($_POST['acc_ann'])) {
 
-            }
+                        if (isset($_POST['ann_chose'])) {
+                            $requete0 = "UPDATE annonces SET is_ann_locked = ? WHERE ann_id = ?";
+                            $query0 = $pdo->prepare($requete0);
+                            $query0->execute(array(1, $ann_id_clean1));
 
-            if (isset($_POST['acc_ann'])) {
+                            $requete1 = "UPDATE annonces SET ann_dev_username = ? WHERE ann_id = ?";
+                            $query1 = $pdo->prepare($requete1);
+                            $query1->execute(array($_SESSION['USERNAME'], $ann_id_clean1));
 
-                if (isset($_POST['ann_chose'])) {
-                    foreach ($result8 as $cle => $valeur) {
-                        $requete0 = "UPDATE annonces SET is_ann_locked = ? WHERE ann_id = ?";
-                        $query0 = $pdo->prepare($requete0);
-                        $query0->execute(array(1, $ann_id_clean1));
+                            $requete1 = "UPDATE annonces SET ann_lock_time = (NOW() + INTERVAL 1 DAY) WHERE ann_id = ?";
+                            $query1 = $pdo->prepare($requete1);
+                            $query1->execute(array($ann_id_clean1));
 
-                        $requete1 = "UPDATE annonces SET ann_dev_username = ? WHERE ann_id = ?";
-                        $query1 = $pdo->prepare($requete1);
-                        $query1->execute(array($_SESSION['USERNAME'], $ann_id_clean1));
+                            header('Location: http://localhost:8080/' . 'onlycode/site/index.php');
 
-                        $requete1 = "UPDATE annonces SET ann_lock_time = (NOW() + INTERVAL 1 DAY) WHERE ann_id = ?";
-                        $query1 = $pdo->prepare($requete1);
-                        $query1->execute(array($ann_id_clean1));
-
-                        $cle++;
+                        }
                         header('Location: http://localhost:8080/' . 'onlycode/site/index.php');
                     }
                 }
-                header('Location: http://localhost:8080/' . 'onlycode/site/index.php');
             }
+
             ?>
         </div>
     </div>
