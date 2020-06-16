@@ -8,23 +8,53 @@ try {
     include './db.php';
 
     if (isset($_SESSION['ROLE'])) {
-        /* Partie affichage pour les gens qui ont besoin d'aide */
+        /* Partie affichage pour les gens qui ont besoin d'aide | les plus récent d’abord, les plus vues, les plus proche d'expiration, par langage */
         if ($_SESSION['ROLE'] == 0) {?>
-     <div class="content">
+<div class="content">
     <div class="article" style="width: 100%;">
-                <h2>Vos annonces encore disponible</h2>
+        <h2>Vos annonces encore disponible</h2>
+        <hr>
+        <h5>Filtres :</h5>
+        <form method="post">
+            <input type="submit" name="most_recent" value="Les plus récent">
+            <input type="submit" name="most_seen" value="Les plus vues">
+            <input type="submit" name="closest_to_expire" value="Les plus proche d'expiration">
+        </from>
+
 <?php
 
-            $is_locked = $pdo->prepare("SELECT is_ann_locked FROM annonces WHERE ann_username LIKE ?");
-            $is_locked->execute(array($_SESSION['USERNAME']));
+            $order1 = "ann_start_time DESC";
+            $order2 = "ann_views DESC";
+            $order3 = "ann_expire_time DESC";
+
+            if (isset($most_recent)) {
+                $order1 = "ann_start_time DESC";
+                $order2 = "ann_start_time DESC";
+                $order3 = "ann_start_time DESC";
+            }
+
+            if (isset($most_seen)) {
+                $order1 = "ann_views DESC";
+                $order2 = "ann_views DESC";
+                $order3 = "ann_views DESC";
+            }
+
+            if (isset($closest_to_expire)) {
+                $order1 = "ann_expire_time DESC";
+                $order2 = "ann_expire_time DESC";
+                $order3 = "ann_expire_time DESC";
+            }
+
+            $is_locked = $pdo->prepare("SELECT is_ann_locked FROM annonces WHERE ann_username LIKE ? ORDER BY ?");
+            $is_locked->execute(array($_SESSION['USERNAME'], $order1));
             $result0 = $is_locked->fetchAll();
 
-            $ann_name = $pdo->prepare("SELECT ann_name FROM annonces WHERE ann_username LIKE ?");
-            $ann_name->execute(array($_SESSION['USERNAME']));
+            $ann_name = $pdo->prepare("SELECT ann_name FROM annonces WHERE ann_username LIKE ? ORDER BY ?");
+            $ann_name->execute(array($_SESSION['USERNAME'], $order2));
             $result1 = $ann_name->fetchAll();
 
-            $views = $pdo->prepare("SELECT ann_views FROM annonces WHERE ann_username LIKE ?");
-            $views->execute(array($_SESSION['USERNAME']));
+            $views = $pdo->prepare("SELECT ann_views FROM annonces WHERE ann_username LIKE ? ORDER BY ?");
+            $views->execute(array($_SESSION['USERNAME'], $order3));
             $result2 = $views->fetchAll();
 
             foreach ($result0 as $cle => $valeur) {
@@ -58,12 +88,19 @@ try {
             }
 
             ?>
-        </div>
     </div>
+</div>
 
-    <div class="content">
+<div class="content">
     <div class="article" style="width: 100%;">
-            <h2>Toutes vos annonces</h2>
+        <h2>Toutes vos annonces</h2>
+        <hr>
+        <h5>Filtres :</h5>
+        <form method="post">
+            <input type="submit" name="most_recent" value="Les plus récent">
+            <input type="submit" name="most_seen" value="Les plus vues">
+            <input type="submit" name="closest_to_expire" value="Les plus proche d'expiration">
+        </from>
             <?php
 
             $annonce = $pdo->prepare("SELECT ann_name FROM annonces WHERE ann_username LIKE ?");
@@ -98,8 +135,8 @@ try {
             }
 
             ?>
-        </div>
     </div>
+</div>
 
 <!-- Partie affichage pour les dev -->
 
@@ -186,14 +223,10 @@ try {
                     $replace8 = '';
                     $ann_id_clean1 = str_replace($order8, $replace8, $str8);
 
-                    if (!isset($_SESSION['ANN_VIEWS'])) {
-                        $_SESSION['ANN_VIEWS'] = $ann_views_clean;
-                    } else {
-                        $_SESSION['ANN_VIEWS']++;
-                        $requete0 = "UPDATE annonces SET ann_views = ? WHERE ann_id = ?";
-                        $query0 = $pdo->prepare($requete0);
-                        $query0->execute(array($_SESSION['ANN_VIEWS'], $ann_id_clean1));
-                    }
+                    $ann_views_clean++;
+                    $requete0 = "UPDATE annonces SET ann_views = ? WHERE ann_id = ?";
+                    $query0 = $pdo->prepare($requete0);
+                    $query0->execute(array($ann_views_clean, $ann_id_clean1));
 
                     $cle++;
 
@@ -205,11 +238,9 @@ try {
                     ?>
 
             <form method="post">
-                <div>
-                    <input type="checkbox" name="ann_chose">
-                    <label for="ann_chose">Choisir cette annonce</label>
-                    <input type="submit" name="acc_ann" value="Accepter l'annonce">
-                </div>
+                <input type="checkbox" name="ann_chose">
+                <label for="ann_chose">Choisir cette annonce</label>
+                <input type="submit" name="acc_ann" value="Accepter l'annonce">
             </from>
 
             <?php
@@ -238,8 +269,8 @@ try {
             }
 
             ?>
-        </div>
     </div>
+</div>
 
 <!-- Partie affichage pour les dev num 2 -->
 <div class="content">
@@ -334,7 +365,7 @@ try {
             }
 
             ?>
-</div>
+    </div>
 </div>
 
     <?php

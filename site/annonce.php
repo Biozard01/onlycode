@@ -18,7 +18,7 @@ try {
 
 <!DOCTYPE html>
 <html>
-    <?php include './head.php';?>
+<?php include './head.php';?>
     <body>
         <?php include './nav.php';?>
         <div>
@@ -27,7 +27,7 @@ try {
                     <h2>Créer une annonce</h2>
                     <form method="post">
                         <p>Titre de l'annonce : <input name="ann_name" type="text" required pattern="[^()/><\][\\\x22,;|éèç]+" spellcheck><p>
-                        <p>Date d'expiration de l'annonce : <input name="ann_expire_time" type="datetime-local" required></p>
+                        <p>Date d'expiration de l'annonce : <input name="ann_expire_time" type="datetime-local" value="2020-06-01T00:00" required></p>
                         <p>Description de l'annonce : <p>
                         <textarea name="ann_text" cols="30" maxlength="1000" required spellcheck></textarea>
                         <?php
